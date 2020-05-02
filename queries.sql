@@ -13,9 +13,16 @@ JOIN Shipper WHERE "Order".OrderDate < '2012-08-09' group by "Order".id;
 
 -- Display the name and quantity of the products ordered in order with Id 10251. Sort by ProductName. Shows 3 records.
 
-SELECT Product.ProductName, Product.QuantityPerUnit FROM "Product" 
-JOIN "order" WHERE "order".id="10251";
+SELECT Product.ProductName, OrderDetail.Quantity, OrderDetail.OrderId FROM "Product" 
+JOIN "OrderDetail" ON Product.Id = OrderDetail.ProductId WHERE "OrderDetail".orderid="10251";
 
 -- Display the OrderID, Customer's Company Name and the employee's LastName for every order. All columns should be labeled clearly. Displays 16,789 records.
+
+ SELECT "order".Id, Customer.CompanyName, Employee.LastName
+FROM "order"
+JOIN Customer
+ON Customer.id = "order".CustomerId
+JOIN Employee
+ON "order".EmployeeId = Employee.Id
 
 
